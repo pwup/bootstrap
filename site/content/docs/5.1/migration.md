@@ -57,6 +57,8 @@ Your custom Bootstrap CSS builds should now look something like this with a sepa
 
 - **Introduced new `$enable-container-classes` option.** Now when opting into the experimental CSS Grid layout, `.container-*` classes will still be compiled, unless this option is set to `false`.
 
+<hr class="mt-5 mb--4">
+
 ## Dependencies
 
 - Dropped jQuery.
