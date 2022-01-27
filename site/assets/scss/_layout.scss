@@ -1,6 +1,7 @@
 .bd-layout {
-  padding-right: $bd-gutter-x;
-  padding-left: $bd-gutter-x;
+  @include media-breakpoint-down(md) {
+    --bs-gutter-x: #{$bd-gutter-x};
+  }
 
   @include media-breakpoint-up(md) {
     display: grid;
@@ -10,7 +11,7 @@
   }
 
   @include media-breakpoint-up(lg) {
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1.2fr 4.8fr;
   }
 }
 
