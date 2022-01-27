@@ -118,22 +118,10 @@
   }
 
   // Insert copy to clipboard button before .highlight
-  var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard" title="Copy to clipboard">Copy</button></div>'
+  var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard" title="Copy to clipboard"><svg class="bi" width="1em" height="1em" fill="currentColor"><use xlink:href="#clipboard"/></svg></button></div>'
   document.querySelectorAll('div.highlight')
     .forEach(function (element) {
       element.insertAdjacentHTML('beforebegin', btnHtml)
-    })
-
-  document.querySelectorAll('.btn-clipboard')
-    .forEach(function (btn) {
-      var tooltipBtn = new bootstrap.Tooltip(btn)
-
-      btn.addEventListener('mouseleave', function () {
-        // Explicitly hide tooltip, since after clicking it remains
-        // focused (as it's a button), so tooltip would otherwise
-        // remain visible until focus is moved away
-        tooltipBtn.hide()
-      })
     })
 
   var clipboard = new ClipboardJS('.btn-clipboard', {
@@ -143,26 +131,32 @@
   })
 
   clipboard.on('success', function (event) {
-    var tooltipBtn = bootstrap.Tooltip.getInstance(event.trigger)
-    var originalTitle = event.trigger.getAttribute('title')
+    var iconFirstChild = event.trigger.querySelector('.bi').firstChild
+    var namespace = 'http://www.w3.org/1999/xlink'
+    var originalXhref = iconFirstChild.getAttributeNS(namespace, 'href')
+    var originalTitle = event.trigger.title
 
-    tooltipBtn.setContent({ '.tooltip-inner': 'Copied!' })
-    event.trigger.addEventListener('hidden.bs.tooltip', function () {
-      tooltipBtn.setContent({ '.tooltip-inner': originalTitle })
-    }, { once: true })
     event.clearSelection()
+    iconFirstChild.setAttributeNS(namespace, 'href', originalXhref.replace('clipboard', 'check2'))
+    event.trigger.title = 'Copied!'
+
+    setTimeout(function () {
+      iconFirstChild.setAttributeNS(namespace, 'href', originalXhref)
+      event.trigger.title = originalTitle
+    }, 2000)
   })
 
-  clipboard.on('error', function (event) {
+  clipboard.on('error', function () {
     var modifierKey = /mac/i.test(navigator.userAgent) ? '\u2318' : 'Ctrl-'
     var fallbackMsg = 'Press ' + modifierKey + 'C to copy'
-    var tooltipBtn = bootstrap.Tooltip.getInstance(event.trigger)
-    var originalTitle = event.trigger.getAttribute('title')
+    var errorElement = document.getElementById('copy-error-callout')
 
-    tooltipBtn.setContent({ '.tooltip-inner': fallbackMsg })
-    event.trigger.addEventListener('hidden.bs.tooltip', function () {
-      tooltipBtn.setContent({ '.tooltip-inner': originalTitle })
-    }, { once: true })
+    if (!errorElement) {
+      return
+    }
+
+    errorElement.classList.remove('d-none')
+    errorElement.insertAdjacentHTML('afterbegin', fallbackMsg)
   })
 
   anchors.options = {

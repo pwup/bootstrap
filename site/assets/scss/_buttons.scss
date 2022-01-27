@@ -7,6 +7,7 @@
   color: $white;
   background-color: $bd-purple-bright;
   border-color: $bd-purple-bright;
+  @include border-radius(.5rem);
 
   &:hover,
   &:active {
@@ -24,6 +25,7 @@
   font-weight: 600;
   color: $bd-download;
   border-color: $bd-download;
+  @include border-radius(.4rem);
 
   &:hover,
   &:active {
