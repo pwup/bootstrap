@@ -91,7 +91,7 @@
   align-items: center;
   text-decoration-color: rgba($primary, .5);
   text-underline-offset: .5rem;
-  -webkit-backface-visibility: hidden; // stylelint-disable-line property-no-vendor-prefix
+  backface-visibility: hidden;
 
   .bi {
     width: 1.5em;
