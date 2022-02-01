@@ -122,7 +122,8 @@ class ScrollSpy extends BaseComponent {
       const observableSection = this._observableSections.get(event.target.hash)
       if (observableSection) {
         event.preventDefault()
-        this._element.scrollTop = observableSection.offsetTop - this._element.offsetTop // chrome 60 doesn't support `scrollTo`
+        // Chrome 60 doesn't support `scrollTo`
+        this._element.scrollTop = observableSection.offsetTop - this._element.offsetTop
       }
     })
   }
@@ -209,9 +210,7 @@ class ScrollSpy extends BaseComponent {
     }
 
     this._clearActiveClass(this._config.target)
-
     this._activeTarget = target
-
     target.classList.add(CLASS_NAME_ACTIVE)
     this._activateParents(target)
 
