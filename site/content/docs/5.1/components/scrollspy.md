@@ -301,7 +301,7 @@ var scrollSpy = new bootstrap.ScrollSpy(document.body, {
 {{< callout danger >}}
 #### Resolvable ID targets required
 
-Navbar links must have resolvable id targets, else they are being ignored. For example, a `<a href="#home">home</a>` must correspond to something in the DOM like `<div id="home"></div>`
+Navbar links must have resolvable id targets, otherwise they are being ignored. For example, a `<a href="#home">home</a>` must correspond to something in the DOM like `<div id="home"></div>`
 {{< /callout >}}
 
 {{< callout info >}}
