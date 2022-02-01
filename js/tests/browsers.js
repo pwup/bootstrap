@@ -28,7 +28,11 @@ const browsers = {
     os: 'Windows',
     os_version: '10',
     browser: 'Chrome',
-    browser_version: '60'
+    browser_version: '60',
+    flags: [
+      '--disable-gpu',
+      '--no-sandbox'
+    ]
   },
   firefoxWin10: {
     base: 'BrowserStack',
@@ -42,7 +46,11 @@ const browsers = {
     os: 'Windows',
     os_version: '10',
     browser: 'Chrome',
-    browser_version: 'latest'
+    browser_version: 'latest',
+    flags: [
+      '--disable-gpu',
+      '--no-sandbox'
+    ]
   },
   firefoxWin10Latest: {
     base: 'BrowserStack',

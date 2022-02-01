@@ -57,6 +57,9 @@ const config = {
   autoWatch: false,
   singleRun: true,
   concurrency: Number.POSITIVE_INFINITY,
+  browserDisconnectTolerance: 3,
+  browserDisconnectTimeout: 10_000,
+  browserNoActivityTimeout: 60_000,
   client: {
     clearContext: false
   },
