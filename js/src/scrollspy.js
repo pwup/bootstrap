@@ -18,8 +18,9 @@ const NAME = 'scrollspy'
 const DATA_KEY = 'bs.scrollspy'
 const EVENT_KEY = `.${DATA_KEY}`
 const DATA_API_KEY = '.data-api'
-const EVENT_CLICK = `click${EVENT_KEY}`
+
 const EVENT_ACTIVATE = `activate${EVENT_KEY}`
+const EVENT_CLICK = `click${EVENT_KEY}`
 const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
 
 const CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item'
